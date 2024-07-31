@@ -1,0 +1,208 @@
+<div class="card bg-group h-100">
+  <div class="d-flex flex-row justify-content-between">
+    <div class="d-flex justify-content-start">
+      <span class="fault-warning-red"></span>
+      <h2 class="mar-5">Cảnh báo sự cố ATTT</h2>
+    </div>
+    <h2>
+      <span style="color: orange">{{ countDaXuLyChartSuCoATTT }}</span
+      >/{{ countTotalChartSuCoATTT }}
+    </h2>
+  </div>
+  <div class="row h-50 card-border mar-5">
+    <ejs-chart
+      class="h-100"
+      style="display: block"
+      [primaryXAxis]="primaryXAxis"
+      [primaryYAxis]="primaryYAxis"
+      [legendSettings]="legendSettings"
+      (pointClick)="onClickChartSuCoATTT($event)"
+    >
+      <e-series-collection>
+        <e-series
+          stackingGroup="MALWARE"
+          [dataSource]="malware"
+          type="StackingColumn"
+          xName="x"
+          yName="y"
+          name="Mã độc ({{summaryMalware.daxuly || 0}}/{{summaryMalware.tong || 0}})"
+          fill="#D00B32"
+          width="2"
+          [marker]="marker"
+        >
+        </e-series>
+        <e-series
+          stackingGroup="MALWARE"
+          [dataSource]="malware_daxuly"
+          type="StackingColumn"
+          xName="x"
+          yName="nonFixed"
+          name=""
+          fill="#EC9DAD"
+          width="2"
+        ></e-series>
+
+        <e-series
+          stackingGroup="BLACK_DOMAIN"
+          [dataSource]="black_domain"
+          type="StackingColumn"
+          xName="x"
+          yName="y"
+          name="Truy vấn tên miền độc hại ({{summaryBlackDomain.daxuly || 0}}/{{summaryBlackDomain.tong || 0}})"
+          fill="#1D85E7"
+          width="2"
+          [marker]="marker"
+        ></e-series>
+        <e-series
+          stackingGroup="BLACK_DOMAIN"
+          [dataSource]="black_domain_daxuly"
+          type="StackingColumn"
+          xName="x"
+          yName="nonFixed"
+          name=""
+          fill="#A5CEF5"
+          width="2"
+        ></e-series>
+
+        <e-series
+          stackingGroup="INTERNET"
+          [dataSource]="internet"
+          type="StackingColumn"
+          xName="x"
+          yName="y"
+          name="Kết nối Internet ({{summaryInternet.daxuly || 0}}/{{summaryInternet.tong || 0}})"
+          width="2"
+          fill="#045E2B"
+          [marker]="marker"
+        ></e-series>
+        <e-series
+          stackingGroup="INTERNET"
+          [dataSource]="internet_daxuly"
+          type="StackingColumn"
+          xName="x"
+          yName="nonFixed"
+          name=""
+          width="2"
+          fill="#9BBFAA"
+        ></e-series>
+
+        <e-series
+          stackingGroup="HUNTING"
+          [dataSource]="hunting"
+          type="StackingColumn"
+          xName="x"
+          yName="y"
+          name="Bất thường ({{summaryHunting.daxuly || 0}}/{{summaryHunting.tong || 0}})"
+          fill="#F58501"
+          width="2"
+          [marker]="marker"
+        ></e-series>
+        <e-series
+          stackingGroup="HUNTING"
+          [dataSource]="hunting_daxuly"
+          type="StackingColumn"
+          xName="x"
+          yName="nonFixed"
+          name=""
+          fill="#FBCE99"
+          width="2"
+        ></e-series>
+      </e-series-collection>
+    </ejs-chart>
+  </div>
+  <div class="row h-45 card-border">
+    <ng-container *ngIf="eventListPromise | async as events">
+      <div class="table-left-panel-border h-100">
+        <h3>Tổng số:{{ events?.total }}</h3>
+        <div class="table-responsive h-100">
+          <table class="table table-bordered h-90">
+            <thead class="text-center">
+              <tr class="fw-bold fs-1 text-gray-900">
+                <th scope="col">STT</th>
+                <th *ngIf="!mainType">Mạng</th>
+                <th>Đơn vị</th>
+                <th>Loại</th>
+                <th>Người quản lý</th>
+                <th>IP/MAC</th>
+                <th>Thời gian</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr
+                *ngFor="let event of events.items; let index = index"
+                class="fs-3 text-gray-900"
+              >
+                <td class="text-center">{{ index + 1 }}</td>
+                <td *ngIf="!mainType" class="text-center">
+                  {{ getValueNetwork(event.main_type) }}
+                </td>
+                <td class="normal-text-inline text-center">
+                  {{ event?.unit?.unit_name_full }}
+                </td>
+                <td>
+                  <p class="normal-text-inline text-center">
+                    {{ event.source_ip }}
+                  </p>
+                  <p class="normal-text-inline text-center">
+                    {{ getValueAlertType(event.alert_type) }}
+                  </p>
+                </td>
+                <td>
+                  <p class="normal-text-inline text-center">
+                    {{ event.employee_name }}
+                  </p>
+                </td>
+                <td>
+                  <p class="small-text-inline text-center">
+                    {{ event.source_mac }}
+                  </p>
+                </td>
+
+                <td>
+                  <p class="normal-text-inline text-center">
+                    {{ getLastActive(event.last_active) }}
+                  </p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <ng-container *ngIf="eventListPromise | async as eventListPromise">
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+              <li
+                class="page-item"
+                [class.disabled]="eventListPromise.page_index === 1"
+              >
+                <a
+                  class="page-link"
+                  (click)="
+                    pagination(
+                      eventListPromise.page_index - 1,
+                      eventListPromise.page_size
+                    )
+                  "
+                  ><i class="previous"></i
+                ></a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link">{{ eventListPromise.page_index }}</a>
+              </li>
+              <li class="page-item">
+                <a
+                  class="page-link"
+                  (click)="
+                    pagination(
+                      eventListPromise.page_index + 1,
+                      eventListPromise.page_size
+                    )
+                  "
+                  ><i class="next"></i
+                ></a>
+              </li>
+            </ul>
+          </nav>
+        </ng-container></div
+    ></ng-container>
+  </div>
+</div>
