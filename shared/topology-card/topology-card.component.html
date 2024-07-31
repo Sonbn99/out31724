@@ -1,0 +1,16 @@
+<ng-container *ngIf="hasTopologyData()">
+  <div id="diagram-space">
+    <ejs-diagram
+      #diagram
+      id="diagram"
+      [nodes]="nodes"
+      [connectors]="connectors"
+      [getNodeDefaults]="getNodeDefaults"
+      [tool]="tool"
+      [snapSettings]="snapSettings"
+      [getConnectorDefaults]="getConnectorDefaults"
+      (created)="handleWhenDiagramCreate()"
+    >
+    </ejs-diagram>
+  </div>
+</ng-container>

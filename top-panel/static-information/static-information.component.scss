@@ -1,0 +1,200 @@
+.flex-container {
+    //display: flex;
+    //justify-content: space-between;
+    gap: 10px;
+    // max-width: 1200px;
+    //margin: 20px auto;ng build
+
+}
+
+.container-top {
+    padding: 20px;
+    border-radius: 10px;
+    flex: 1;
+    position: relative;
+    //gap: 10px;
+}
+
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header {
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #045E2B;
+}
+
+.sub-header {
+    color: #045E2B;
+    margin-top: 10px;
+}
+
+.main-table {
+    margin-top: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 20%;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+    min-width: 150px; /* Đặt độ rộng tối thiểu cho các cột */
+}
+
+thead tr {
+    background-color: #fff9db; /* Màu nền cho dòng tiêu đề */
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #FAF8BF99; /* Màu nền đậm hơn cho dòng lẻ */
+}
+
+tbody tr:nth-child(even) {
+    background-color: #fff9db; /* Màu nền cho dòng chẵn */
+}
+
+.info-box {
+    display: flex;
+    gap: 20px;
+    text-align: right;
+}
+
+.info-box div {
+    text-align: left;
+    color:#045E2B;
+}
+
+.info-box span {
+    display: block;
+    font-weight: bold;
+    color: #045E2B;
+}
+
+
+.table1 th, .table1 td {
+    border: 0.7px solid #A9A52126;
+    min-width: 100px;
+    white-space: nowrap;
+    font-size: 0.9em;
+    text-align: center;
+}
+
+/* Đặt độ rộng của các ô trong bảng 2 */
+.table2 th, .table2 td {
+    border: 0.7px solid #A9A52126;
+    padding: 12px 8px ;
+    min-width: 150px;
+    white-space: nowrap;
+    font-size: 0.9em;
+    text-align: center;
+}
+.table2 {
+    margin-top: 20px;
+}
+
+/* Thêm định dạng cho bảng mới */
+.table3 {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Khoảng cách giữa header và bảng */
+    border-radius: 20%;
+}
+
+.table3 th, .table3 td {
+    border: 0.7px solid #A9A52126;
+    padding: 9px 8px;
+    text-align: center;
+    min-width: 150px;
+    white-space: nowrap;
+    font-size: 0.9em;
+}
+
+
+.circle-container {
+    position: absolute; /* Định vị tuyệt đối để đặt vào góc trên bên phải */
+    top: 20px; /* Căn chỉnh từ phía trên */
+    right: 20px; /* Căn chỉnh từ phía phải */
+    display: flex; /* Để các hình tròn nằm cạnh nhau */
+    gap: 10px; /* Khoảng cách giữa các hình tròn */
+}
+
+.circle {
+    width: 20px; /* Đường kính của ô tròn */
+    height: 20px; /* Đường kính của ô tròn */
+    border-radius: 50%; /* Tạo hình tròn */
+    background-color: #045E2B; /* Màu xanh lá cây */
+    position: relative; /* Cần để định vị phần tử con */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Màu của ký tự > */
+    font-size: 14px; /* Kích thước của ký tự > */
+}
+
+.circle::before {
+    content: ''; /* Mặc định không có nội dung */
+}
+
+.status-left::before {
+    content: '<';
+}
+
+.status-right::before {
+    content: '>';
+}
+.table4 {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px; /* Khoảng cách giữa header và bảng */
+    border-radius: 30%;
+}
+
+.table4 th, .table4 td {
+    border: 0.7px solid #A9A52126;
+    padding: 12px; /* Điều chỉnh padding để tăng độ cao */
+    text-align: center;
+    min-width: 200px; /* Đặt độ rộng tối thiểu cho các cột */
+    white-space: nowrap; /* Ngăn nội dung xuống dòng */
+    font-size: 0.9em; /* Điều chỉnh kích thước font nếu cần */
+    position: relative; /* Để định vị chú thích */
+}
+
+
+
+.legend {
+    display: flex;
+    flex-wrap: wrap; /* Cho phép các phần tử chú thích xuống dòng nếu cần */
+    justify-content: flex-end; /* Đưa các phần tử vào góc phải */
+    margin-bottom: 10px; /* Khoảng cách giữa chú thích và bảng */
+    position: absolute; /* Đặt vị trí của phần tử tuyệt đối */
+    top: 20px; /* Khoảng cách từ trên cùng */
+    right: 20px; /* Khoảng cách từ bên phải */
+    color:#045E2B
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-left: 20px; /* Khoảng cách giữa các phần tử chú thích */
+
+}
+
+.legend-color {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    margin-right: 5px;
+}
+
+.legend-item span {
+    font-size: 0.9em; /* Kích thước font cho chú thích */
+}

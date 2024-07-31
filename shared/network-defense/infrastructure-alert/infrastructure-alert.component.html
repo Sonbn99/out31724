@@ -1,0 +1,189 @@
+<div class="bg-group h-100">
+  <div class="h-100">
+    <div class="card-title mar-5">
+      <div class="d-flex flex-row justify-content-between">
+        <div class="d-flex justify-content-start">
+          <span class="fault-warning-origin"></span>
+          <h2 class="align-middle">Cảnh báo sự cố hạ tầng, ứng dụng dịch vụ</h2>
+        </div>
+        <h2>{{ countDaXuLyChartUDDV }}/{{ countMKTChartUDDV }}</h2>
+      </div>
+    </div>
+    <div class="row h-45 card-border mar-5">
+      <ejs-chart
+        class="h-100"
+        style="display: block"
+        [primaryXAxis]="primaryXAxis"
+        [primaryYAxis]="primaryYAxis"
+        (pointClick)="onClickChartSuCoUngDungHaTang($event)"
+        [legendSettings]="legendSettings"
+        (legendClick)="onClickChartSuCoUngDungHaTang($event)"
+      >
+        <e-series-collection>
+          <e-series
+            stackingGroup="device"
+            [dataSource]="disconnectedDeviceDaXuLy"
+            type="StackingColumn"
+            xName="x"
+            yName="y"
+            name=""
+            fill="#AE5E01"
+            width="2"
+            [marker]="marker"
+          ></e-series>
+          <e-series
+            stackingGroup="device"
+            [dataSource]="disconnectedDevice"
+            type="StackingColumn"
+            xName="x"
+            yName="y"
+            name="Thiết bị ({{summaryDevice?.daxuly || 0}}/{{summaryDevice.mkn|| 0}})"
+            fill="#16C8C7"
+            width="2"
+            [marker]="marker"
+          ></e-series>
+
+          <e-series
+          stackingGroup="service"
+          [dataSource]="disconnectedService"
+          type="StackingColumn"
+          xName="x"
+          yName="y"
+          name=""
+          fill="#1D85E7"
+          width="2"
+          [marker]="marker"
+        ></e-series>
+
+          <e-series
+            stackingGroup="service"
+            [dataSource]="disconnectedServiceDaXuLy"
+            type="StackingColumn"
+            xName="x"
+            yName="y"
+            name="Ứng dụng, dịch vụ ({{summaryService?.daxuly || 0}}/{{summaryService.mkn|| 0}})"
+            fill="#1D85E7"
+            width="2"
+            [marker]="marker"
+          ></e-series>
+
+          <e-series
+            stackingGroup="server_monitor"
+            [dataSource]="disconnectedSystemMoritorDaXuLy"
+            type="StackingColumn"
+            xName="x"
+            yName="y"
+            name=""
+            width="2"
+            fill="#F8AD55"
+          ></e-series>
+          <e-series
+            stackingGroup="server_monitor"
+            [dataSource]="disconnectedSystemMoritor"
+            type="StackingColumn"
+            xName="x"
+            yName="y"
+            name="Hệ thống giám sát ({{summaryMoritor?.daxuly || 0}}/{{summaryMoritor.mkn|| 0}})"
+            width="2"
+            fill="#EACCA8"
+            [marker]="marker"
+          ></e-series>
+        </e-series-collection>
+      </ejs-chart>
+    </div>
+    <div class="row h-45 card-border">
+      <ng-container *ngIf="disconnectedListPromise | async as events">
+        <div class="table-left-panel-border h-100">
+          <h3>Tổng số: {{ events?.total }}</h3>
+          <div class="table-responsive h-100">
+            <table class="table table-bordered h-90">
+              <thead class="text-center">
+                <tr class="fw-bold fs-1 text-gray-900">
+                  <th scope="col">STT</th>
+                  <th *ngIf="!mainType">Mạng</th>
+                  <th>Đơn vị</th>
+                  <th>Loại</th>
+                  <th>IP/Tên miền</th>
+                  <th>Kết nối gần nhất</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr
+                  *ngFor="let event of events.items; let index = index"
+                  class="fs-3 text-gray-900"
+                >
+                  <td class="text-center">{{ index + 1 }}</td>
+                  <td *ngIf="!mainType" class="text-center">
+                    {{ getValueNetwork(event.main_type) }}
+                  </td>
+                  <td class="text-center">
+                    <p class="normal-text-inline">{{ getTenDV(event) }}</p>
+                    <!--                                                    <p class="small-text-inline">Bộ tư lệnh 86</p>-->
+                  </td>
+                  <td class="normal-text-inline text-center">
+                    {{ getType(event) }}
+                  </td>
+                  <!--                        <td class="normal-text-inline text-center">{{ event.employee_name }}</td>-->
+                  <td>
+                    <p class="normal-text-inline text-center">
+                      {{ getIpTenMien(event) }}
+                    </p>
+                    <!--                          <p class="normal-text-inline text-end">{{ event.source_mac }}</p>-->
+                  </td>
+                  <td>
+                    <p class="normal-text-inline text-center">
+                      {{ getLastActive(event) }}
+                    </p>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <!-- <a class="text-center">
+        <span style="color:darkgreen">Xem chi tiết</span>
+      </a> -->
+        <ng-container
+          *ngIf="disconnectedListPromise | async as disconnectedListPromise"
+        >
+          <nav aria-label="Page navigation">
+            <ul class="pagination">
+              <li
+                class="page-item"
+                [class.disabled]="disconnectedListPromise.page_index === 1"
+              >
+                <a
+                  class="page-link"
+                  (click)="
+                    pagination(
+                      disconnectedListPromise.page_index - 1,
+                      disconnectedListPromise.page_size
+                    )
+                  "
+                  ><i class="previous"></i
+                ></a>
+              </li>
+              <li class="page-item active">
+                <a class="page-link">{{
+                  disconnectedListPromise.page_index
+                }}</a>
+              </li>
+              <li class="page-item">
+                <a
+                  class="page-link"
+                  (click)="
+                    pagination(
+                      disconnectedListPromise.page_index + 1,
+                      disconnectedListPromise.page_size
+                    )
+                  "
+                  ><i class="next"></i
+                ></a>
+              </li>
+            </ul>
+          </nav>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>

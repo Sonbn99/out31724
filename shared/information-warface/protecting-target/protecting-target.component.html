@@ -1,0 +1,34 @@
+<div class="card-border h-100">
+  <div class="title mar-5">
+    <h2 class="text-left" (click)="togglePopup(true, 'MucTieuBaoVe')">
+      Mục tiêu bảo vệ
+    </h2>
+  </div>
+  <div class="table-responsive table-duty-top h-90">
+    <table class="table table-striped table-bordered h-100">
+      <tbody>
+        <tr>
+          <td>Uỷ viên Bộ chính trị</td>
+          <td>16</td>
+        </tr>
+        <tr>
+          <td>Lãnh đạo quân đội</td>
+          <td>60</td>
+        </tr>
+        <ng-container *ngIf="baoveData | async as dataList">
+          <tr
+            *ngFor="let item of dataList"
+            (click)="sendMapEvent('', 'MAP', 'TCTT', item.name)"
+          >
+            <td>{{ item.name }}</td>
+            <td>{{ item.thongke }}</td>
+          </tr>
+        </ng-container>
+        <tr>
+          <td>Dân tộc, tôn giáo</td>
+          <td>99</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

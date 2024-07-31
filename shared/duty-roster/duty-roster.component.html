@@ -2,7 +2,9 @@
   <div class="header-container d-flex flex-row justify-content-between h-25">
     <div id="header">
       <h1 class="header">Kíp trực trong BTL</h1>
-      <div class="sub-header fw-normal font-size-CH">Trực chỉ huy BTL:{{shiftInformation.TrucChiHuy}}</div>
+      <div class="sub-header fw-normal font-size-CH">
+        Trực chỉ huy BTL:{{ shiftInformation.TrucChiHuy }}
+      </div>
     </div>
     <div id="troops-info" class="info-box font-size-heading-duty-roster">
       <table>
@@ -26,26 +28,33 @@
   <div class="table-top-border table-responsive h-75">
     <table class="table table-bordered table-striped h-95">
       <thead>
-      <tr>
-        <th></th>
-        <th *ngFor="let unit of shiftInformation.LichTruc">{{ unit.TenDonVi }}</th>
-      </tr>
+        <tr>
+          <th></th>
+          <th *ngFor="let unit of shiftInformation.LichTruc">
+            {{ unit.TenDonVi }}
+          </th>
+        </tr>
       </thead>
       <tbody>
-      <tr>
-        <td scope="row" class="fw-bold">Trực CH</td>
-        <td *ngFor="let unit of shiftInformation.LichTruc">{{ unit.TrucCH }}</td>
-      </tr>
-      <tr>
-        <td class="fw-bold">Trực ban trưởng</td>
-        <td *ngFor="let unit of shiftInformation.LichTruc">{{ unit.TrucBanTruong }}</td>
-      </tr>
-      <tr>
-        <td class="fw-bold">Trực ban phó</td>
-        <td *ngFor="let unit of shiftInformation.LichTruc">{{ unit.TrucBanPho }}</td>
-      </tr>
+        <tr>
+          <td scope="row" class="fw-bold">Trực CH</td>
+          <td *ngFor="let unit of shiftInformation.LichTruc">
+            {{ unit.TrucCH }}
+          </td>
+        </tr>
+        <tr>
+          <td class="fw-bold">Trực ban trưởng</td>
+          <td *ngFor="let unit of shiftInformation.LichTruc">
+            {{ unit.TrucBanTruong }}
+          </td>
+        </tr>
+        <tr>
+          <td class="fw-bold">Trực ban phó</td>
+          <td *ngFor="let unit of shiftInformation.LichTruc">
+            {{ unit.TrucBanPho }}
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
-
 </div>

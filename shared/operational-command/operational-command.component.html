@@ -1,0 +1,60 @@
+<div class="d-flex flex-column justify-content-between h-100">
+  <div class="d-flex flex-row justify-content-between h-25">
+    <h1>Điều hành tác chiến</h1>
+    <span>Tổng số: {{ shiftOperation?.total_doccument || 0 }}</span>
+    <div class="circle-container">
+      <button
+        type="button"
+        class="btn bg-color-secondary btn-icon btn-sm rounded-circle me-2"
+      >
+        <i
+          class="fas fa-chevron-left"
+          (click)="pagination(this.page - 1, this.page_size)"
+        ></i>
+      </button>
+      <button
+        type="button"
+        class="btn bg-color-primary btn-icon btn-sm rounded-circle me-2"
+      >
+        <i
+          class="fas fa-chevron-right"
+          (click)="pagination(this.page + 1, this.page_size)"
+        ></i>
+      </button>
+    </div>
+  </div>
+  <div class="table-top-border table-responsive h-75">
+    <table class="table table-bordered table-striped h-95">
+      <thead>
+        <tr>
+          <th>NỘI DUNG</th>
+          <th>NGƯỜI GIAO</th>
+          <th>NGÀY GIAO</th>
+          <th>XỬ LÝ</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of shiftOperation.nhiemvus">
+          <td>
+            <ejs-tooltip content="{{ item.NhiemVu }}">
+              <span
+                class="status legend-color w-20px h-20px"
+                [ngClass]="getStatusClass(item.DoKhan)"
+              ></span
+              >{{ item.NhiemVu.substr(0, 30) }}...
+            </ejs-tooltip>
+          </td>
+          <td>
+            {{ item.NguoiGiao }}
+          </td>
+          <td>{{ item.NgayGiao }}</td>
+          <td>
+            <div>
+              {{ getValue(item?.DonViXuLy) }}
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

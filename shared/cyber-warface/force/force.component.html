@@ -1,0 +1,29 @@
+<div class="card-border p-5">
+    <div class="title d-flex justify-content-between">
+        <h2 class="text-left">Lực lượng</h2>
+        <h2 class="text-right">
+            <!-- <span style="color: green font-size-span">120CB</span>/6CMF -->
+            <span style="color: green font-size-span">{{ total01 }}CB</span
+      >/{{ totalLucLuongCMF - 4 }}CMF
+    </h2>
+  </div>
+  <div>
+    <div>
+      <ng-container *ngIf="forceData | async as data">
+          <ejs-chart id="chart-container" [primaryXAxis]="forcePrimaryXAxis" [legendSettings]="forceLegendSettings">
+              <e-series-collection>
+                  <!-- <e-series *ngFor="let row of dataTotal"
+                  [dataSource]='row.data' type='StackingColumn' xName='x'
+                  yName='y' [name]='row.seriesName'>
+              </e-series>   -->
+                  <e-series [dataSource]="data" type="StackingColumn" xName="x" yName="y0" name="UK" fill="#F58501" columnWidth="1" columnSpacing="0.5"></e-series>
+                  <e-series [dataSource]="data" type="StackingColumn" xName="x" yName="y1" name="a" fill="#8b4ef5" columnWidth="1" columnSpacing="0.5"></e-series>
+                  <e-series [dataSource]="data" type="StackingColumn" xName="x" yName="y2" name="ac" fill="#045E2B" columnWidth="1" columnSpacing="0.5"></e-series>
+              </e-series-collection>
+          </ejs-chart>
+
+      </ng-container>
+
+  </div>
+  </div>
+</div>

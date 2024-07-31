@@ -1,0 +1,60 @@
+<div class="card-border h-100">
+  <div class="title d-flex justify-content-between">
+    <h2 class="text-left">Mục tiêu giám sát</h2>
+  </div>
+  <div class="row h-95">
+    <div class="col-6 h-100">
+      <h3 class="text-left" (click)="togglePopup(true, 'TQBaiViet')">
+        Tương quan bài viết
+      </h3>
+      <ng-container class="h-85" *ngIf="articleCorrelationData | async as data">
+        <ejs-chart
+          class="h-85"
+          id="post-bar-chart-container"
+          [primaryXAxis]="articleCorrelationPrimaryXAxis"
+          [primaryYAxis]="articleCorrelationPrimaryYAxis"
+          [palettes]="articleCorrelationPalette"
+          [tooltip]="articleCorrelationTooltip"
+        >
+          <e-series-collection>
+            <e-series
+              [dataSource]="data"
+              type="Bar"
+              xName="nentang"
+              yName="soluong"
+              [marker]="articleCorrelationMarker"
+              [pointColorMapping]="articleCorrelationColorMapping"
+            ></e-series>
+          </e-series-collection>
+        </ejs-chart>
+      </ng-container>
+    </div>
+    <div class="col-6 h-100">
+      <h3 class="text-left" (click)="togglePopup(true, 'TQMucTieu')">
+        Tương quan mục tiêu
+      </h3>
+      <ng-container *ngIf="targetCorrelationData | async as data">
+        <ejs-accumulationchart
+          id="related-target-pie-chart"
+          [enableSmartLabels]="enableSmartLabels"
+          [title]="relatedTargetTitle"
+          [legendSettings]="accumulationLegendSettings"
+          [center]="{ x: '50%', y: '50%' }"
+        >
+          <e-accumulation-series-collection>
+            <e-accumulation-series
+              [dataSource]="data"
+              xName="nentang"
+              yName="soluong"
+              radius="70%"
+              innerRadius="50%"
+              [dataLabel]="targetCorrelationDataLabel"
+              [palettes]="targetCorrelationColors"
+            >
+            </e-accumulation-series>
+          </e-accumulation-series-collection>
+        </ejs-accumulationchart>
+      </ng-container>
+    </div>
+  </div>
+</div>

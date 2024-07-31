@@ -1,0 +1,31 @@
+<div class="card-border h-100">
+  <div class="title d-flex justify-content-between">
+    <h2 class="text-left" (click)="togglePopup(true, 'SacThai')">
+      Chỉ số sắc thái
+    </h2>
+  </div>
+  <div class="h-90">
+    <ng-container *ngIf="nuanceData | async as data">
+      <ejs-accumulationchart
+        id="nuance-donut-chart"
+        [title]="nuanceTitle"
+        [legendSettings]="nuancelegendSettings"
+        [center]="{ x: '50%', y: '50%' }"
+      >
+        <e-accumulation-series-collection>
+          <e-accumulation-series
+            [dataSource]="data"
+            xName="x"
+            yName="y"
+            innerRadius="50%"
+            [dataLabel]="nuanceDataLabel"
+            [palettes]="nuanceColors"
+            radius="80%"
+            legendShape="Rectangle"
+          >
+          </e-accumulation-series>
+        </e-accumulation-series-collection>
+      </ejs-accumulationchart>
+    </ng-container>
+  </div>
+</div>

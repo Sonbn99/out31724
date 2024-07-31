@@ -1,0 +1,31 @@
+<div class="card-border p-5">
+  <div class="title d-flex justify-content-between">
+    <h2 class="text-left">Kỹ thuật tác chiến</h2>
+    <h2 class="text-right">
+      <span style="color: green font-size-span">{{ totalWeaponCount }}</span>
+    </h2>
+  </div>
+  <div>
+    <ng-container *ngIf="warfaceData | async as data">
+      <ejs-chart
+        id="command-column-chart-container"
+        [primaryXAxis]="warfacePrimaryXAxis"
+        [primaryYAxis]="warfacePrimaryYAxis"
+        [title]="warfaceTitle"
+      >
+        <e-series-collection>
+          <!-- <e-series [dataSource]="data" type="Bar" xName="weapon_name" yName="count" pointColorMappingName="unit_name" [pointColorMapping]="warfacePointMapping"></e-series> -->
+          <e-series
+            [dataSource]="data"
+            type="Bar"
+            xName="unit_name"
+            yName="count"
+            pointColorMappingName="unit_name"
+            [pointColorMapping]="warfacePointMapping"
+          ></e-series>
+        </e-series-collection>
+      </ejs-chart>
+      <div id="weaponList"></div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,108 @@
+<div class="card bg-group d-flex flex-column h-100">
+  <div class="card-title">
+    <h2>An toàn thông tin</h2>
+  </div>
+  <div class="table-safety-information table-left-panel-border">
+    <table
+      class="table card-height-max"
+    >
+      <thead>
+        <tr class="fw-bold text-gray-900">
+          <th></th>
+          <th class="text-center">Trong ngày</th>
+          <th class="text-center">Tổng số</th>
+        </tr>
+      </thead>
+      <tbody>
+        <ng-container *ngIf="(thietBiTrienKhaiATTT | async) as thietBiTrienKhaiATTT">
+
+        <tr>
+          <td>
+            <span>Triển khai giải pháp ATTT trên thiết bị đầu cuối</span>
+          </td>
+          <td class="tb-line-gray text-center">
+            <span>{{thietBiTrienKhaiATTT?.trongngay}}</span>
+          </td>
+          <td class="tb-line-gray text-center">
+            <span>{{thietBiTrienKhaiATTT?.tong | numberFormat}}</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>Chưa định danh</span>
+          </td>
+          <td>
+
+          </td>
+          <td>
+
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>Mã độc mới phát hiện</span>
+          </td>
+          <td class="tb-line-gray text-center">
+            <span>15</span>
+          </td>
+          <td class="tb-line-gray text-center">
+            <span>25000</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>Mức an toàn cơ bản</span>
+          </td>
+          <td class="tb-line-gray text-center">
+            <span>15</span>
+          </td>
+          <td class="tb-line-gray text-center">
+            <span>25000</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>Mức an toàn nâng cao</span>
+          </td>
+          <td class="tb-line-gray text-center">
+            <span>15</span>
+          </td>
+          <td class="tb-line-gray text-center">
+            <span>25000</span>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <span>Phê duyệt hồ sơ cấp độ</span>
+          </td>
+          <td class="tb-line-gray text-center">
+            <span>15</span>
+          </td>
+          <td class="tb-line-gray text-center">
+            <span>25000</span>
+          </td>
+        </tr>
+        </ng-container>
+      </tbody>
+    </table>
+    <!-- <ng-container *ngIf="(deviceList | async) as deviceList">
+      <nav aria-label="Page navigation">
+        <ul class="pagination">
+          <li class="page-item" [class.disabled]="page_index === 1">
+            <a class="page-link" (click)="pagination(deviceList.page_index - 1,deviceList.page_size)"><i class="previous"></i></a>
+          </li>
+          <li class="page-item active">
+            <a class="page-link">{{deviceList.page_index}}</a>
+          </li>
+          <li class="page-item" [class.disabled]="page_index === totalPages">
+            <a class="page-link" (click)="pagination(deviceList.page_index + 1,deviceList.page_size)"><i class="next"></i></a>
+          </li>
+          <li class="goto-page">
+            <input type="number"  [(ngModel)]="gotoPage" placeholder="Trang" min="1" [max]="totalPages">
+            <button class="btn" (click)="pagination(gotoPage,deviceList.page_size)">Đi</button>
+          </li>
+        </ul>
+      </nav>
+    </ng-container> -->
+  </div>
+</div>

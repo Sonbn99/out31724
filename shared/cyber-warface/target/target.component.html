@@ -1,0 +1,31 @@
+<div class="card-border p-5">
+  <div class="title d-flex justify-content-between">
+    <h2 class="text-left">Mục tiêu</h2>
+    <h2 class="text-right">
+      <span style="color: green font-size-span">{{ totaltargetData }}</span
+      >/300
+    </h2>
+  </div>
+
+  <ng-container *ngIf="targetData | async as data">
+    <ejs-accumulationchart
+      id="target-pie-chart"
+      [title]="targetTitle"
+      [legendSettings]="targetlegendSettings"
+    >
+      <e-accumulation-series-collection>
+        <e-accumulation-series
+          [dataSource]="data"
+          xName="unit_name"
+          yName="count"
+          innerRadius="50%"
+          [dataLabel]="targetDataLabel"
+          [palettes]="targetColors"
+          radius="90%"
+          legendShape="Rectangle"
+        >
+        </e-accumulation-series>
+      </e-accumulation-series-collection>
+    </ejs-accumulationchart>
+  </ng-container>
+</div>

@@ -1,0 +1,26 @@
+<div class="h-100">
+  <div class="card-border h-100">
+    <div class="title d-flex justify-content-between">
+      <h2 class="text-left">Kết quả đăng tải</h2>
+    </div>
+    <div class="h-90">
+      <ejs-chart
+        id="upload-post-bar-chart-container"
+        [primaryXAxis]="uploadPostPrimaryXAxis"
+        [primaryYAxis]="uploadPostPrimaryYAxis"
+        [title]="uploadPostTitle"
+        height="100%"
+      >
+        <e-series-collection>
+          <e-series
+            [dataSource]="uploadPostData"
+            type="Bar"
+            xName="x"
+            yName="y"
+            [pointColorMapping]="uploadPostColorMapping"
+          ></e-series>
+        </e-series-collection>
+      </ejs-chart>
+    </div>
+  </div>
+</div>

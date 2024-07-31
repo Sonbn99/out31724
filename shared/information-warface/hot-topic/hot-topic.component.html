@@ -1,0 +1,29 @@
+<div class="h-100">
+  <div class="title d-flex justify-content-between">
+    <h2 class="text-left" (click)="togglePopup(true, 'ChuDeNong')">
+      Thống kê chủ đề nóng
+    </h2>
+  </div>
+  <div class="h-90">
+    <ng-container class="h-100" *ngIf="hotTopicData | async as data">
+      <ejs-chart
+        id="hot-topic-chart-container"
+        [primaryXAxis]="hotTopicPrimaryXAxis"
+        [primaryYAxis]="hotTopicPrimaryYAxis"
+        [title]="hotTopicTitle"
+        height="90%"
+      >
+        <e-series-collection>
+          <e-series
+            [dataSource]="data"
+            type="Column"
+            xName="name"
+            yName="thongke"
+            [pointColorMapping]="hotTopicPointMapping"
+            [marker]="hotTopicMarker"
+          ></e-series>
+        </e-series-collection>
+      </ejs-chart>
+    </ng-container>
+  </div>
+</div>

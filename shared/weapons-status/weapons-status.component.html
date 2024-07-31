@@ -1,0 +1,51 @@
+<div class="d-flex flex-column justify-content-between h-100">
+  <div class="header-container d-flex flex-row justify-content-between">
+    <h1 class="header">Trạng thái vũ khí - trang bị</h1>
+    <div class="info-box d-flex flex-row gap-5">
+      <div
+        class="legend-item d-flex justify-content-center align-item-center gap-3"
+      >
+        <span class="status status-green legend-color w-20px h-20px"></span>
+        <span class="font-size-heading-duty-roster">Hoạt động bình thường</span>
+      </div>
+      <div
+        class="legend-item d-flex justify-content-center align-item-center gap-3"
+      >
+        <span class="status status-orange legend-color w-20px h-20px"></span>
+        <span class="font-size-heading-duty-roster">Nâng cấp - Bảo trì</span>
+      </div>
+      <div
+        class="legend-item d-flex justify-content-center align-item-center gap-3"
+      >
+        <span class="status status-red legend-color w-20px h-20px"></span>
+        <span class="font-size-heading-duty-roster">Có sự cố</span>
+      </div>
+    </div>
+  </div>
+  <div class="table-top-border table-responsive">
+    <table class="table table-bordered table-striped h-90">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Mạng quân sự</th>
+          <th>Mạng internet</th>
+          <th>Mạng chuyên dùng</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let levelGroup of weaponList">
+          <td>{{ levelGroup?.level }}</td>
+          <td *ngFor="let mainTypeGroup of levelGroup.list">
+            <span *ngFor="let item of mainTypeGroup.list">
+              <span
+                [ngClass]="getStatusClass(item.status)"
+                class="badge p-3 fs-1"
+                >{{ item.name }}</span
+              >
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

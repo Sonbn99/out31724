@@ -1,0 +1,28 @@
+<div class="card-border p-5">
+  <div class="title d-flex justify-content-between">
+    <h2 class="text-left">Dữ liệu thu thập</h2>
+    <h2 class="text-right">
+      <span style="color: green font-size-span">{{ totalCollectData }}GB</span>
+    </h2>
+  </div>
+  <div>
+    <ng-container *ngIf="collectData | async as data">
+      <ejs-chart
+        id="collect-column-chart-container"
+        [primaryXAxis]="collectPrimaryXAxis"
+        [primaryYAxis]="collectPrimaryYAxis"
+      >
+        <e-series-collection>
+          <e-series
+            [dataSource]="data"
+            type="Column"
+            xName="unit_name"
+            yName="result_number"
+            [pointColorMapping]="collectPointMapping"
+            [marker]="collectMarker"
+          ></e-series>
+        </e-series-collection>
+      </ejs-chart>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="legend bg-white">
+  <ng-container *ngIf="topology$ | async as topology">
+    <div class="row" *ngIf="topology">
+      <h2>Cấu trúc mạng</h2>
+      <app-topology-card [topologyData]="topology"></app-topology-card>
+    </div>
+  </ng-container>
+  <div class="row">
+    <div class="row">
+      <h2>Thực lực</h2>
+      <app-feature-stats-overlay
+        [featureData]="selectedFeatureData"
+      ></app-feature-stats-overlay>
+    </div>
+  </div>
+</div>

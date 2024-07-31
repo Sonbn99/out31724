@@ -1,0 +1,516 @@
+<div class="card bg-group h-100">
+  <div class="h-100">
+    <div class="card-title">
+      <h2>Hạ tầng công nghệ thông tin</h2>
+    </div>
+    <div class="table-responsive table-left-panel-border table-it-infras h-100">
+      <div
+        class="table-responsive table-it-infras h-100"
+        [ngSwitch]="getValueTable(mainType)"
+      >
+        <ng-container class="table-responsive h-100" *ngSwitchCase="'tableQS'">
+          <!-- <table class="table">
+            <thead>
+            <tr class="fw-bold text-gray-900">
+              <th></th>
+              <th class="text-center">Bộ Quốc phòng</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-active">
+              <td colspan="2">
+                <span class="fw-bold tb-line-gray">Thiết bị mạng</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Thiết bị định tuyến, cơ yếu
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'ROUTER')" class="text-center">
+                <ng-container *ngIf="deviceQSQP | async as deviceQSQP">
+                  {{ _getValueQSQP(deviceQSQP, "ROUTER") }}
+                </ng-container>
+              </td>
+              <td>
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Thiết bị chuyển mạch
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'SWITCH')" class="text-center tb-line-gray">
+                <ng-container *ngIf="deviceQSQP | async as deviceQSQP">
+                  {{ _getValueQSQP(deviceQSQP, "SWITCH") }}
+                </ng-container>
+              </td>
+              <td>
+
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Thiết bị tường lửa
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                <ng-container *ngIf="deviceQSQP | async as deviceQSQP">
+                  {{ _getValueQSQP(deviceQSQP, "FIREWALL") }}
+                </ng-container>
+              </td>
+
+            </tr>
+
+            <tr class="table-active">
+              <td colspan="2">
+                <span class="fw-bold tb-line-gray ">Thiết bị đầu cuối</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Máy chủ
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                <ng-container *ngIf="
+                                  thietBiDauCuoiQSQP | async as thietBiDauCuoiQSQP
+                                ">
+                  {{ getValueTypeTotal(thietBiDauCuoiQSQP, "SERVER") }}
+                </ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Máy trạm
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                <ng-container *ngIf="
+                                  thietBiDauCuoiQSQP | async as thietBiDauCuoiQSQP
+                                ">
+                  {{ getValueTypeTotal(thietBiDauCuoiQSQP, "CLIENT") }}
+                </ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Thiết bị khác
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                <ng-container *ngIf="
+                                  thietBiDauCuoiQSQP | async as thietBiDauCuoiQSQP
+                                ">
+                  {{ getValueTypeTotal(thietBiDauCuoiQSQP, "OTHER") }}
+                </ng-container>
+              </td>
+            </tr>
+            <tr class="table-active">
+              <td colspan="2">
+                <span class="fw-bold tb-line-gray ">Ứng dụng, dịch vụ</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Cổng thông tin điện tử
+              </td>
+              <td class="text-center">
+                <ng-container *ngIf="countPortalQSQP | async as countPortalQSQP">
+                  {{ countPortalQSQP }}
+                </ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Dùng chung
+              </td>
+              <td class="text-center">
+                <ng-container *ngIf="countCommonQSQP | async as countCommonQSQP">
+                  {{ countCommonQSQP }}
+                </ng-container>
+              </td>
+            </tr>
+            </tbody>
+          </table> -->
+          <table
+            class="table table-responsive table-it-infras h-100 table-left-panel"
+          >
+            <thead>
+              <tr class="fw-bold fs-1 text-gray-900">
+                <th></th>
+                <th class="text-center">Bộ Quốc phòng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="table-active">
+                <td colspan="2">
+                  <span class="fw-bold tb-line-gray">Thiết bị mạng</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Thiết bị định tuyến, cơ yếu</span>
+                </td>
+                <td
+                  (click)="sendMapEvent('QS-QP', 'MAP', 'ROUTER')"
+                  class="text-center tb-line-gray"
+                >
+                  <ng-container *ngIf="deviceQSQP | async as deviceQSQP">
+                    {{ _getValueQSQP(deviceQSQP, "ROUTER") | numberFormat }}
+                  </ng-container>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Thiết bị chuyển mạch</span>
+                </td>
+                <td
+                  (click)="sendMapEvent('QS-QP', 'MAP', 'SWITCH')"
+                  class="text-center tb-line-gray"
+                >
+                  <ng-container *ngIf="deviceQSQP | async as deviceQSQP">
+                    {{ _getValueQSQP(deviceQSQP, "SWITCH") | numberFormat }}
+                  </ng-container>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Thiết bị tường lửa</span>
+                </td>
+                <td
+                  (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')"
+                  class="text-center tb-line-gray"
+                >
+                  <ng-container *ngIf="deviceQSQP | async as deviceQSQP">
+                    {{ _getValueQSQP(deviceQSQP, "FIREWALL") | numberFormat }}
+                  </ng-container>
+                </td>
+              </tr>
+
+            <tr class="table-active">
+              <td colspan="2">
+                <span class="fw-bold tb-line-gray ">Thiết bị đầu cuối</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Máy chủ</span>
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                <ng-container *ngIf="thietBiDauCuoiQSQP | async as thietBiDauCuoiQSQP">
+                  {{ getValueTypeTotal(thietBiDauCuoiQSQP, "SERVER") | numberFormat }}
+                </ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Máy trạm</span>
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                <ng-container *ngIf="thietBiDauCuoiQSQP | async as thietBiDauCuoiQSQP">
+                  {{ getValueTypeTotal(thietBiDauCuoiQSQP, "CLIENT") | numberFormat }}
+                </ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Thiết bị khác</span>
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                <ng-container *ngIf="thietBiDauCuoiQSQP | async as thietBiDauCuoiQSQP
+                            ">
+                  {{ getValueTypeTotal(thietBiDauCuoiQSQP, "OTHER") | numberFormat }}
+                </ng-container>
+              </td>
+            </tr>
+            <tr class="table-active">
+              <td colspan="2">
+                <span class="fw-bold tb-line-gray ">Ứng dụng, dịch vụ</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Cổng thông tin điện tử</span>
+              </td>
+              <td class="text-center">
+                <ng-container *ngIf="countPortalQSQP | async as countPortalQSQP">
+                  {{ countPortalQSQP || 0 }}
+                </ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Dùng chung</span>
+              </td>
+              <td class="text-center">
+                <ng-container *ngIf="countCommonQSQP | async as countCommonQSQP">
+                  {{ countCommonQSQP }}
+                </ng-container>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </ng-container>
+        <ng-container *ngSwitchCase="'tableTYQG'">
+          <table class="table table-bordered table-border-line table-left-panel">
+            <thead>
+            <tr class="fw-bold fs-1 text-gray-900">
+              <th></th>
+              <th class="text-center">Hệ thống trọng yếu Quốc gia</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="table-active">
+              <td colspan="2">
+                <span class="fw-bold tb-line-gray ">Thiết bị mạng</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Thiết bị định tuyến, cơ yếu</span>
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'ROUTER')" class="text-center tb-line-gray">
+                <ng-container *ngIf="deviceTYQG | async as deviceTYQG">
+                  {{ _getValueQSQP(deviceTYQG, "ROUTER") | numberFormat }}
+                </ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Thiết bị chuyển mạch</span>
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'SWITCH')" class="text-center tb-line-gray">
+                <ng-container *ngIf="deviceTYQG | async as deviceTYQG">
+                  {{ _getValueQSQP(deviceTYQG, "SWITCH") | numberFormat }}
+                </ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Thiết bị tường lửa</span>
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                <ng-container *ngIf="deviceTYQG | async as deviceTYQG">
+                  {{ _getValueQSQP(deviceTYQG, "FIREWALL") | numberFormat }}
+                </ng-container>
+              </td>
+            </tr>
+
+            <tr class="table-active">
+              <td colspan="2">
+                <span class="fw-bold tb-line-gray ">Thiết bị đầu cuối</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Máy chủ</span>
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                <ng-container *ngIf="thietBiDauCuoiTYQG | async as thietBiDauCuoiTYQG">
+                  {{ getValueTypeTotal(thietBiDauCuoiTYQG, "SERVER") | numberFormat }}
+                </ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Máy trạm</span>
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                <ng-container *ngIf="thietBiDauCuoiTYQG | async as thietBiDauCuoiTYQG">
+                  {{ getValueTypeTotal(thietBiDauCuoiTYQG, "CLIENT") | numberFormat }}
+                </ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Thiết bị khác</span>
+              </td>
+              <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                <ng-container *ngIf="thietBiDauCuoiTYQG | async as thietBiDauCuoiTYQG">
+                  {{ getValueTypeTotal(thietBiDauCuoiTYQG, "OTHER") | numberFormat }}
+                </ng-container>
+              </td>
+            </tr>
+            <tr class="table-active">
+              <td colspan="2">
+                <span class="fw-bold tb-line-gray ">Ứng dụng, dịch vụ</span>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Cổng thông tin điện tử</span>
+              </td>
+              <td class="text-center">
+                <ng-container *ngIf="countPortalTYQG | async as countPortalTYQG">
+                  {{ countPortalTYQG }}
+                </ng-container>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <span>Dùng chung</span>
+              </td>
+              <td class="text-center">
+                <ng-container *ngIf="countCommonTYQG | async as countCommonTYQG">
+                  {{ countCommonTYQG }}
+                </ng-container>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </ng-container>
+        <ng-container *ngSwitchCase="'tableAll'">
+          <table>
+            <table class="table table-bordered table-border-line table-left-panel">
+              <thead>
+              <tr class="fw-bold fs-1 text-gray-900">
+                <th></th>
+                <th class="text-center">Bộ Quốc phòng</th>
+                <th class="text-center">Hệ thống trọng yếu Quốc gia</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr class="table-active">
+                <td colspan="3">
+                  <span class="fw-bold tb-line-gray ">Thiết bị mạng</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Thiết bị định tuyến, cơ yếu</span>
+                </td>
+                <td (click)="sendMapEvent('QS-QP', 'MAP', 'ROUTER')" class="text-center">
+                  <ng-container *ngIf="deviceQSQP | async as deviceQSQP">
+                    {{ _getValueQSQP(deviceQSQP, "ROUTER") | numberFormat }}
+                  </ng-container>
+                </td>
+                <td (click)="sendMapEvent('QS-QP', 'MAP', 'ROUTER')" class="text-center tb-line-gray">
+                  <ng-container *ngIf="deviceTYQG | async as deviceTYQG">
+                    {{ _getValueQSQP(deviceTYQG, "ROUTER") | numberFormat }}
+                  </ng-container>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Thiết bị chuyển mạch</span>
+                </td>
+                <td (click)="sendMapEvent('QS-QP', 'MAP', 'SWITCH')" class="text-center tb-line-gray">
+                  <ng-container *ngIf="deviceQSQP | async as deviceQSQP">
+                    {{ _getValueQSQP(deviceQSQP, "SWITCH") | numberFormat }}
+                  </ng-container>
+                </td>
+                <td (click)="sendMapEvent('QS-QP', 'MAP', 'SWITCH')" class="text-center tb-line-gray">
+                  <ng-container *ngIf="deviceTYQG | async as deviceTYQG">
+                    {{ _getValueQSQP(deviceTYQG, "SWITCH") | numberFormat }}
+                  </ng-container>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Thiết bị tường lửa</span>
+                </td>
+                <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                  <ng-container *ngIf="deviceQSQP | async as deviceQSQP">
+                    {{ _getValueQSQP(deviceQSQP, "FIREWALL") | numberFormat  }}
+                  </ng-container>
+                </td>
+                <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                  <ng-container *ngIf="deviceTYQG | async as deviceTYQG">
+                    {{ _getValueQSQP(deviceTYQG, "FIREWALL") | numberFormat }}
+                  </ng-container>
+                </td>
+              </tr>
+
+              <tr class="table-active">
+                <td colspan="3">
+                  <span class="fw-bold tb-line-gray ">Thiết bị đầu cuối</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Máy chủ</span>
+                </td>
+                <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                  <ng-container *ngIf="thietBiDauCuoiQSQP | async as thietBiDauCuoiQSQP">
+                    {{ getValueTypeTotal(thietBiDauCuoiQSQP, "SERVER") | numberFormat }}
+                  </ng-container>
+                </td>
+                <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                  <ng-container *ngIf="
+                              thietBiDauCuoiTYQG | async as thietBiDauCuoiTYQG
+                            ">
+                    {{ getValueTypeTotal(thietBiDauCuoiTYQG, "SERVER") | numberFormat }}
+                  </ng-container>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Máy trạm</span>
+                </td>
+                <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                  <ng-container *ngIf="
+                              thietBiDauCuoiQSQP | async as thietBiDauCuoiQSQP
+                            ">
+                    {{ getValueTypeTotal(thietBiDauCuoiQSQP, "CLIENT") | numberFormat }}
+                  </ng-container>
+                </td>
+                <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                  <ng-container *ngIf="thietBiDauCuoiTYQG | async as thietBiDauCuoiTYQG">
+                    {{ getValueTypeTotal(thietBiDauCuoiTYQG, "CLIENT") | numberFormat }}
+                  </ng-container>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Thiết bị khác</span>
+                </td>
+                <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                  <ng-container *ngIf="thietBiDauCuoiQSQP | async as thietBiDauCuoiQSQP">
+                    {{ getValueTypeTotal(thietBiDauCuoiQSQP, "OTHER") | numberFormat }}
+                  </ng-container>
+                </td>
+                <td (click)="sendMapEvent('QS-QP', 'MAP', 'FIREWALL')" class="text-center tb-line-gray">
+                  <ng-container *ngIf="thietBiDauCuoiTYQG | async as thietBiDauCuoiTYQG">
+                    {{ getValueTypeTotal(thietBiDauCuoiTYQG, "OTHER") | numberFormat }}
+                  </ng-container>
+                </td>
+              </tr>
+              <tr class="table-active">
+                <td colspan="3">
+                  <span class="fw-bold tb-line-gray ">Ứng dụng, dịch vụ</span>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Cổng thông tin điện tử</span>
+                </td>
+                <td class="text-center">
+                  <ng-container *ngIf="countPortalQSQP | async as countPortalQSQP">
+                    {{ countPortalQSQP || 0  }}
+                  </ng-container>
+                </td>
+                <td class="text-center">
+                  <ng-container *ngIf="countPortalTYQG | async as countPortalTYQG">
+                    {{ countPortalTYQG || 0  }}
+                  </ng-container>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span>Dùng chung</span>
+                </td>
+                <td class="text-center">
+                  <ng-container *ngIf="countCommonQSQP | async as countCommonQSQP">
+                    {{ countCommonQSQP || 0  }}
+                  </ng-container>
+                </td>
+                <td class="text-center">
+                  <ng-container *ngIf="countCommonTYQG | async as countCommonTYQG">
+                    {{ countCommonTYQG || 0  }}
+                  </ng-container>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </table>
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>
